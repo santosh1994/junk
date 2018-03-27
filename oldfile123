@@ -1,0 +1,27 @@
+{
+  "paragraphs": [
+    {
+      "text": "",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1522142654487_404361667",
+      "id": "20180327-092414_1753357412_q_J4Q41HQ8FP1522142653",
+      "dateCreated": "Mar 27, 2018 9:24:14 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 1000
+    }
+  ],
+  "name": "oao4w",
+  "id": "J4Q41HQ8FP1522142653",
+  "angularObjects": {},
+  "config": {
+    "isDashboard": false,
+    "defaultLang": ""
+  },
+  "info": {},
+  "source": "FCN"
+}
