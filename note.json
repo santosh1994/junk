@@ -1,0 +1,117 @@
+{
+  "paragraphs": [
+    {
+      "text": "%sh ls /usr/lib/zeppelin/notebook/*/note.json | wc -l",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Mar 26, 2018 9:44:54 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1522057487495_907033135",
+      "id": "20180326-094447_1997920624_q_8GM767X75F1522057444",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "27\n"
+      },
+      "dateCreated": "Mar 26, 2018 9:44:47 AM",
+      "dateStarted": "Mar 26, 2018 9:44:54 AM",
+      "dateFinished": "Mar 26, 2018 9:44:54 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var myVar \u003d z.input(\"param\", \"test\");z.put(\"var1\", myVar)",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Mar 26, 2018 9:44:36 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {
+          "param": {
+            "name": "param",
+            "displayName": "param",
+            "type": "input",
+            "defaultValue": "test",
+            "hidden": false
+          }
+        }
+      },
+      "paragraphProgress": {
+        "jobs": [],
+        "numCompletedTasks": 0,
+        "numTasks": 0,
+        "truncated": false
+      },
+      "version": "v0",
+      "jobName": "paragraph_1522057445049_1611615640",
+      "id": "20180326-094405_49907244_q_8GM767X75F1522057444",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\nmyVar: Object \u003d test\n"
+      },
+      "dateCreated": "Mar 26, 2018 9:44:05 AM",
+      "dateStarted": "Mar 26, 2018 9:44:36 AM",
+      "dateFinished": "Mar 26, 2018 9:44:37 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1522057476890_-1949204782",
+      "id": "20180326-094436_1476227816_q_8GM767X75F1522057444",
+      "dateCreated": "Mar 26, 2018 9:44:36 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "cHMJ2",
+  "id": "8GM767X75F1522057444",
+  "angularObjects": {
+    "2D56ZMMGM916111515077839603:shared_process": [],
+    "2D3F52981916111515077835846:shared_process": [],
+    "2D51HSY2X916111515077835853:shared_process": [],
+    "2D3SWFXJX916111515077835840:shared_process": []
+  },
+  "config": {
+    "isDashboard": false
+  },
+  "info": {},
+  "source": "FCN"
+}
