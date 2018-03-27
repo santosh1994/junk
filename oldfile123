@@ -1,45 +1,6 @@
 {
   "paragraphs": [
     {
-      "text": "%md test",
-      "user": "santoshk@qubole.com",
-      "dateUpdated": "Mar 27, 2018 9:29:08 AM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": true,
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "version": "v0",
-      "jobName": "paragraph_1522142654487_404361667",
-      "id": "20180327-092414_1753357412_q_J4Q41HQ8FP1522142653",
-      "result": {
-        "code": "SUCCESS",
-        "type": "HTML",
-        "msg": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003etest\u003c/p\u003e\n\u003c/div\u003e"
-      },
-      "dateCreated": "Mar 27, 2018 9:24:14 AM",
-      "dateSubmitted": "Mar 27, 2018 9:29:08 AM",
-      "dateStarted": "Mar 27, 2018 9:29:08 AM",
-      "dateFinished": "Mar 27, 2018 9:29:08 AM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 1000
-    },
-    {
       "text": "",
       "config": {},
       "settings": {
@@ -47,21 +8,16 @@
         "forms": {}
       },
       "version": "v0",
-      "jobName": "paragraph_1522142947742_1148695902",
-      "id": "20180327-092907_1471930743_q_J4Q41HQ8FP1522142653",
-      "dateCreated": "Mar 27, 2018 9:29:07 AM",
+      "jobName": "paragraph_1522146834323_-1810572347",
+      "id": "20180327-103354_1534556808_q_P85ZG2VHRP1522146833",
+      "dateCreated": "Mar 27, 2018 10:33:54 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 1000
     }
   ],
-  "name": "oao4w",
-  "id": "J4Q41HQ8FP1522142653",
-  "angularObjects": {
-    "2D56ZMMGM916111515077839603:shared_process": [],
-    "2D3F52981916111515077835846:shared_process": [],
-    "2D51HSY2X916111515077835853:shared_process": [],
-    "2D3SWFXJX916111515077835840:shared_process": []
-  },
+  "name": "test",
+  "id": "P85ZG2VHRP1522146833",
+  "angularObjects": {},
   "config": {
     "isDashboard": false,
     "defaultLang": ""
