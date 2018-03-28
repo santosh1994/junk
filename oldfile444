@@ -1,0 +1,27 @@
+{
+  "paragraphs": [
+    {
+      "text": "",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1522218350265_1276138244",
+      "id": "20180328-062550_779749632_q_XS6HEVPDHA1522218349",
+      "dateCreated": "Mar 28, 2018 6:25:50 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 1000
+    }
+  ],
+  "name": "rObg8",
+  "id": "XS6HEVPDHA1522218349",
+  "angularObjects": {},
+  "config": {
+    "isDashboard": false,
+    "defaultLang": ""
+  },
+  "info": {},
+  "source": "FCN"
+}
