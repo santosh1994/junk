@@ -1,0 +1,27 @@
+{
+  "paragraphs": [
+    {
+      "text": "",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1522227511937_-1240038081",
+      "id": "20180328-085831_1029671468_q_23MEUMFZS81522227510",
+      "dateCreated": "Mar 28, 2018 8:58:31 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 1000
+    }
+  ],
+  "name": "FAWDO",
+  "id": "23MEUMFZS81522227510",
+  "angularObjects": {},
+  "config": {
+    "isDashboard": false,
+    "defaultLang": ""
+  },
+  "info": {},
+  "source": "FCN"
+}
