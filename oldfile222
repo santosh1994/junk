@@ -1,0 +1,27 @@
+{
+  "paragraphs": [
+    {
+      "text": "",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1522222967722_-1888015405",
+      "id": "20180328-074247_532276857_q_Y5SPJFCTEM1522222965",
+      "dateCreated": "Mar 28, 2018 7:42:47 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 1000
+    }
+  ],
+  "name": "0sfNN",
+  "id": "Y5SPJFCTEM1522222965",
+  "angularObjects": {},
+  "config": {
+    "isDashboard": false,
+    "defaultLang": ""
+  },
+  "info": {},
+  "source": "FCN"
+}
