@@ -1,0 +1,1445 @@
+{
+  "paragraphs": [
+    {
+      "title": "Introduction",
+      "text": "%md ###This notebook supports multiple language backend\n- default: scala with SparkContext available as sc\n- %md: markdown\n- %sql: hive on spark by default. hiveContext object is also available by default. If you specify zeppelin.spark.useHiveContext as false in interpreter settings then this will use spark sql and sqlContext object becomes available\n- %pyspark: pyspark\n- %sh: shell \n\nInterpreters are loaded lazily and hence takes some time the first time.\nNote uses a websocket for communication. So changes propagate to all open instnces of this notebook instantaneously\nUser can configure parameters with which sc object is created by going to interpreters. \nUser can create as many sc interpreters as they want with different settings\nQubole Notes supports auto assist for code completion. You can view the suggestions using the key combination  __Ctrl + .(period)__\n\n##Note that\n- If you use sc.stop in the notebook then spark context will stop and you have to go to interpreter page and click on restart to restart that interpreter again.\n",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "tableHide": false,
+        "editorHide": false,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ]
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eThis notebook supports multiple language backend\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003edefault: scala with SparkContext available as sc\u003c/li\u003e\n\u003cli\u003e%md: markdown\u003c/li\u003e\n\u003cli\u003e%sql: hive on spark by default. hiveContext object is also available by default. If you specify zeppelin.spark.useHiveContext as false in interpreter settings then this will use spark sql and sqlContext object becomes available\u003c/li\u003e\n\u003cli\u003e%pyspark: pyspark\u003c/li\u003e\n\u003cli\u003e%sh: shell\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eInterpreters are loaded lazily and hence takes some time the first time.\n\u003cbr  /\u003eNote uses a websocket for communication. So changes propagate to all open instances of this notebook instantaneously\n\u003cbr  /\u003eThe user can configure parameters with which sc object is created by going to interpreters.\n\u003cbr  /\u003eUser can create as many sc interpreters as they want with different settings\n\u003cbr  /\u003eQubole Notes supports auto assist for code completion. You can view the suggestions using the key combination  \u003cstrong\u003eCtrl + .(period)\u003c/strong\u003e\u003c/p\u003e\n\u003ch2\u003eNote that\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eIf you use sc.stop in the notebook then spark context will stop and you have to go to interpreter page and click on restart to restart that interpreter again.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1419934980691_-323647909",
+      "id": "20141230-102300_977391892_q_3UG134WPG61566216229",
+      "dateCreated": "Dec 30, 2014 10:23:00 AM",
+      "dateStarted": "Aug 26, 2015 9:50:03 AM",
+      "dateFinished": "Aug 26, 2015 9:50:03 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Run spark command",
+      "text": "sc.version",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ]
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: String \u003d 1.3.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1419935702495_-1321054452",
+      "id": "20141230-103502_184920543_q_3UG134WPG61566216229",
+      "dateCreated": "Dec 30, 2014 10:35:02 AM",
+      "dateStarted": "Apr 8, 2015 6:32:54 PM",
+      "dateFinished": "Apr 8, 2015 6:34:07 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Scala SparkPi Example",
+      "text": "import scala.math.random\nimport org.apache.spark._\nval slices \u003d 6 \nval n \u003d 100000 * slices\nval count \u003d sc.parallelize(1 to n, slices).map { i \u003d\u003e\n  val x \u003d random * 2 - 1\n  val y \u003d random * 2 - 1\n  if (x*x + y*y \u003c 1) 1 else 0\n}.reduce(_ + _)\nprintln(\"Pi is roughly \" + 4.0 * count / n)\n",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:07:47 PM",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import scala.math.random\nimport org.apache.spark._\nslices: Int \u003d 6\nn: Int \u003d 600000\ncount: Int \u003d 470854\nPi is roughly 3.1390266666666666\n"
+          }
+        ]
+      },
+      "runtimeInfos": {},
+      "paragraphProgress": {
+        "jobs": [
+          {
+            "id": 2,
+            "jobUrl": "https://release.qa.qubole.net/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2F10.232.185.123%3A8088%2Fproxy%2Fapplication_1566215135749_0001/jobs/job?spark\u003dtrue\u0026id\u003d2",
+            "numTasks": 6,
+            "numCompletedTasks": 6,
+            "stages": [
+              {
+                "id": 5,
+                "completed": true,
+                "status": "Completed",
+                "stageUrl": "https://release.qa.qubole.net/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2F10.232.185.123%3A8088%2Fproxy%2Fapplication_1566215135749_0001/stages/stage/?id\u003d5\u0026attempt\u003d0",
+                "numCompleteTasks": 6,
+                "numActiveTasks": 0,
+                "numFailedTasks": 0,
+                "numTotalTasks": 6
+              }
+            ],
+            "status": "Success"
+          }
+        ],
+        "numCompletedTasks": 6,
+        "numTasks": 6,
+        "truncated": false
+      },
+      "apps": [],
+      "version": "v1",
+      "jobName": "paragraph_1419935908802_1571593404",
+      "id": "20141230-103828_1839775907_q_3UG134WPG61566216229",
+      "dateCreated": "Dec 30, 2014 10:38:28 AM",
+      "dateSubmitted": "Aug 19, 2019 12:07:47 PM",
+      "dateStarted": "Aug 19, 2019 12:07:50 PM",
+      "dateFinished": "Aug 19, 2019 12:07:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Top 10 words in dataset in s3",
+      "text": "//get top 10 words in a dataset in s3\nval file \u003d sc.textFile(\"s3://paid-qubole/default-datasets/gutenberg/pg20417.txt\")\nval counts \u003d file.flatMap(line \u003d\u003e line.split(\" \")).\nmap(word \u003d\u003e (word, 1)).\nreduceByKey(_+_).\nmap(item \u003d\u003e item.swap).  // interchanges position of entries in each tuple\nsortByKey(false).\nmap(item \u003d\u003e item.swap).  // interchanges position of entries in each tuple\ntake(10)\n\ncounts.foreach(println)\n",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:07:25 PM",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "file: org.apache.spark.rdd.RDD[String] \u003d s3://paid-qubole/default-datasets/gutenberg/pg20417.txt MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:26\ncounts: Array[(String, Int)] \u003d Array((\"\",14637), (the,7906), (of,5425), (and,2759), (a,2422), (to,2168), (is,2068), (in,2048), (that,1273), (are,921))\n(,14637)\n(the,7906)\n(of,5425)\n(and,2759)\n(a,2422)\n(to,2168)\n(is,2068)\n(in,2048)\n(that,1273)\n(are,921)\n"
+          }
+        ]
+      },
+      "runtimeInfos": {},
+      "paragraphProgress": {
+        "jobs": [
+          {
+            "id": 0,
+            "jobUrl": "https://release.qa.qubole.net/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2F10.232.185.123%3A8088%2Fproxy%2Fapplication_1566215135749_0001/jobs/job?spark\u003dtrue\u0026id\u003d0",
+            "numTasks": 4,
+            "numCompletedTasks": 4,
+            "stages": [
+              {
+                "id": 0,
+                "completed": true,
+                "status": "Completed",
+                "stageUrl": "https://release.qa.qubole.net/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2F10.232.185.123%3A8088%2Fproxy%2Fapplication_1566215135749_0001/stages/stage/?id\u003d0\u0026attempt\u003d0",
+                "numCompleteTasks": 2,
+                "numActiveTasks": 0,
+                "numFailedTasks": 0,
+                "numTotalTasks": 2
+              },
+              {
+                "id": 1,
+                "completed": true,
+                "status": "Completed",
+                "stageUrl": "https://release.qa.qubole.net/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2F10.232.185.123%3A8088%2Fproxy%2Fapplication_1566215135749_0001/stages/stage/?id\u003d1\u0026attempt\u003d0",
+                "numCompleteTasks": 2,
+                "numActiveTasks": 0,
+                "numFailedTasks": 0,
+                "numTotalTasks": 2
+              }
+            ],
+            "status": "Success"
+          },
+          {
+            "id": 1,
+            "jobUrl": "https://release.qa.qubole.net/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2F10.232.185.123%3A8088%2Fproxy%2Fapplication_1566215135749_0001/jobs/job?spark\u003dtrue\u0026id\u003d1",
+            "numTasks": 5,
+            "numCompletedTasks": 3,
+            "stages": [
+              {
+                "id": 2,
+                "completed": false,
+                "status": "Skipped",
+                "stageUrl": "https://release.qa.qubole.net/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2F10.232.185.123%3A8088%2Fproxy%2Fapplication_1566215135749_0001/stages/stage/?id\u003d2\u0026attempt\u003d0",
+                "numCompleteTasks": 0,
+                "numActiveTasks": 0,
+                "numFailedTasks": 0,
+                "numTotalTasks": 2
+              },
+              {
+                "id": 3,
+                "completed": true,
+                "status": "Completed",
+                "stageUrl": "https://release.qa.qubole.net/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2F10.232.185.123%3A8088%2Fproxy%2Fapplication_1566215135749_0001/stages/stage/?id\u003d3\u0026attempt\u003d0",
+                "numCompleteTasks": 2,
+                "numActiveTasks": 0,
+                "numFailedTasks": 0,
+                "numTotalTasks": 2
+              },
+              {
+                "id": 4,
+                "completed": true,
+                "status": "Completed",
+                "stageUrl": "https://release.qa.qubole.net/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2F10.232.185.123%3A8088%2Fproxy%2Fapplication_1566215135749_0001/stages/stage/?id\u003d4\u0026attempt\u003d0",
+                "numCompleteTasks": 1,
+                "numActiveTasks": 0,
+                "numFailedTasks": 0,
+                "numTotalTasks": 1
+              }
+            ],
+            "status": "Success"
+          }
+        ],
+        "numCompletedTasks": 7,
+        "numTasks": 9,
+        "truncated": false
+      },
+      "apps": [],
+      "version": "v1",
+      "jobName": "paragraph_1423135541996_1080014985",
+      "id": "20150205-112541_1992716784_q_3UG134WPG61566216229",
+      "dateCreated": "Feb 5, 2015 11:25:41 AM",
+      "dateSubmitted": "Aug 19, 2019 12:07:25 PM",
+      "dateStarted": "Aug 19, 2019 12:07:38 PM",
+      "dateFinished": "Aug 19, 2019 12:07:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Spark Sql",
+      "text": "%md ### sql example\n- while using hive on spark you can fetch list of hive tables in qubole and query those tables",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ]
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003esql example\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003ewhile using hive on spark you can fetch list of hive tables in qubole and query those tables\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1419936861882_1871457293",
+      "id": "20141230-105421_806518261_q_3UG134WPG61566216229",
+      "dateCreated": "Dec 30, 2014 10:54:21 AM",
+      "dateStarted": "Apr 8, 2015 6:34:29 PM",
+      "dateFinished": "Apr 8, 2015 6:34:29 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:07:25 PM",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "database": "string",
+                      "tableName": "string",
+                      "isTemporary": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "{\"exceeded\":-1,\"data\":[[\"database\",\"tableName\",\"isTemporary\"],[\"default\",\"default_qubole_airline_origin_destination\",\"false\"],[\"default\",\"default_qubole_memetracker\",\"false\"]]}"
+          }
+        ]
+      },
+      "paragraphProgress": {
+        "jobs": [],
+        "numCompletedTasks": 0,
+        "numTasks": 0,
+        "truncated": false
+      },
+      "apps": [],
+      "version": "v1",
+      "jobName": "paragraph_1566216262419_486797651",
+      "id": "20190819-120422_110971475_q_3UG134WPG61566216229",
+      "dateCreated": "Aug 19, 2019 12:04:22 PM",
+      "dateSubmitted": "Aug 19, 2019 12:04:29 PM",
+      "dateStarted": "Aug 19, 2019 12:05:25 PM",
+      "dateFinished": "Aug 19, 2019 12:05:25 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 1000
+    },
+    {
+      "text": "%sh\nless /tmp/zeppelin_pyspark-7049596984053587979.py",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:22:10 PM",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "#\n# Licensed to the Apache Software Foundation (ASF) under one or more\n# contributor license agreements.  See the NOTICE file distributed with\n# this work for additional information regarding copyright ownership.\n# The ASF licenses this file to You under the Apache License, Version 2.0\n# (the \"License\"); you may not use this file except in compliance with\n# the License.  You may obtain a copy of the License at\n#\n#    http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\n\nimport os, sys, getopt, traceback, json, re\n\nfrom py4j.java_gateway import java_import, JavaGateway, GatewayClient\nfrom py4j.protocol import Py4JJavaError\nfrom pyspark.conf import SparkConf\nfrom pyspark.context import SparkContext\nimport ast\nimport warnings\nimport signal\n\n# for back compatibility\nfrom pyspark.sql import SQLContext, HiveContext, Row\n\ndef module_exists(module_name):\n  try:\n    globals()[module_name] \u003d __import__(module_name)\n  except ImportError:\n    return False\n  else:\n    return True\n\nclass Logger(object):\n  def __init__(self):\n    pass\n\n  def write(self, message):\n    intp.appendOutput(message)\n\n  def reset(self):\n    pass\n\n  def flush(self):\n    pass\n\n  def flush(self):\n    intp.appendOutput(\"\\n\")\n\nclass PyZeppelinContext(dict):\n  def __init__(self, zc):\n    self.z \u003d zc\n    self._displayhook \u003d lambda *args: None\n    try:\n      import matplotlib\n      matplotlib.use(\u0027agg\u0027)\n    except ImportError:\n      pass\n\n  def show(self, obj):\n    from pyspark.sql import DataFrame, Row\n    if isinstance(obj, DataFrame):\n      print(self.z.showData(obj._jdf))\n    elif isinstance(obj, list) and len(obj) \u003e 0 and isinstance(obj[0], Row):\n      obj.insert(0,obj[0].__fields__)\n      print(self.z.showData(obj))\n    elif module_exists(\u0027pandas\u0027) and isinstance(obj, pandas.core.frame.DataFrame):\n      max_result \u003d self.z.getMaxResult()\n      # one more than max_result so that warning about exceed limit is displayed\n      truncated_obj \u003d obj.head(max_result + 1)\n      arr_obj \u003d truncated_obj.values.tolist()\n      arr_obj.insert(0, truncated_obj.columns.values.tolist())\n      print(self.z.showData(arr_obj))\n    else:\n      print(str(obj))\n\n  def showplot(self, obj):\n    if obj.__name__ \u003d\u003d \"matplotlib.pyplot\":\n      self.showmatplot(obj)\n\n  def showmatplot(self, obj):\n    try:\n      from StringIO import StringIO\n    except ImportError:\n      from io import StringIO\n    img \u003d StringIO()\n    obj.savefig(img, format\u003d\u0027svg\u0027)\n    img.seek(0)\n    print(\"%html \u003cdiv style\u003d\u0027width:600px\u0027\u003e\" + img.getvalue() + \"\u003c/div\u003e\")\n\n  # By implementing special methods it makes operating on it more Pythonic\n  def __setitem__(self, key, item):\n    self.z.put(key, item)\n\n  def __getitem__(self, key):\n    return self.z.get(key)\n\n  def __delitem__(self, key):\n    self.z.remove(key)\n\n  def __contains__(self, item):\n    return self.z.containsKey(item)\n\n  def add(self, key, value):\n    self.__setitem__(key, value)\n\n  def put(self, key, value):\n    self.__setitem__(key, value)\n\n  def get(self, key):\n    return self.__getitem__(key)\n\n  def getInterpreterContext(self):\n    return self.z.getInterpreterContext()\n\n  def input(self, name, defaultValue\u003d\"\"):\n    return self.z.input(name, defaultValue)\n\n  def textbox(self, name, defaultValue\u003d\"\"):\n    return self.z.textbox(name, defaultValue)\n\n  def noteTextbox(self, name, defaultValue\u003d\"\"):\n    return self.z.noteTextbox(name, defaultValue)\n\n  def select(self, name, options, defaultValue\u003d\"\"):\n    # auto_convert to ArrayList doesn\u0027t match the method signature on JVM side\n    return self.z.select(name, defaultValue, self.getParamOptions(options))\n\n  def noteSelect(self, name, options, defaultValue\u003d\"\"):\n    return self.z.noteSelect(name, defaultValue, self.getParamOptions(options))\n\n  def checkbox(self, name, options, defaultChecked\u003dNone):\n    optionsIterable \u003d self.getParamOptions(options)\n    defaultCheckedIterables \u003d self.getDefaultChecked(defaultChecked)\n    checkedItems \u003d gateway.jvm.scala.collection.JavaConversions.seqAsJavaList(self.z.checkbox(name, defaultCheckedIterables, optionsIterable))\n    result \u003d []\n    for checkedItem in checkedItems:\n      result.append(checkedItem)\n    return result;\n\n  def noteCheckbox(self, name, options, defaultChecked\u003dNone):\n    optionsIterable \u003d self.getParamOptions(options)\n    defaultCheckedIterables \u003d self.getDefaultChecked(defaultChecked)\n    checkedItems \u003d gateway.jvm.scala.collection.JavaConversions.seqAsJavaList(self.z.noteCheckbox(name, defaultCheckedIterables, optionsIterable))\n    result \u003d []\n    for checkedItem in checkedItems:\n      result.append(checkedItem)\n    return result;\n\n  def getParamOptions(self, options):\n    tuples \u003d list(map(lambda items: self.__tupleToScalaTuple2(items), options))\n    return gateway.jvm.scala.collection.JavaConversions.collectionAsScalaIterable(tuples)\n\n  def getDefaultChecked(self, defaultChecked):\n    if defaultChecked is None:\n      defaultChecked \u003d []\n    return gateway.jvm.scala.collection.JavaConversions.collectionAsScalaIterable(defaultChecked)\n\n  def registerHook(self, event, cmd, replName\u003dNone):\n    if replName is None:\n      self.z.registerHook(event, cmd)\n    else:\n      self.z.registerHook(event, cmd, replName)\n\n  def unregisterHook(self, event, replName\u003dNone):\n    if replName is None:\n      self.z.unregisterHook(event)\n    else:\n      self.z.unregisterHook(event, replName)\n\n  def registerNoteHook(self, event, cmd, noteId, replName\u003dNone):\n    if replName is None:\n      self.z.registerNoteHook(event, cmd, noteId)\n    else:\n      self.z.registerNoteHook(event, cmd, noteId, replName)\n\n  def unregisterNoteHook(self, event, noteId, replName\u003dNone):\n    if replName is None:\n      self.z.unregisterNoteHook(event, noteId)\n    else:\n      self.z.unregisterNoteHook(event, noteId, replName)\n\n  def getHook(self, event, replName\u003dNone):\n    if replName is None:\n      return self.z.getHook(event)\n    return self.z.getHook(event, replName)\n\n  def _setup_matplotlib(self):\n    # If we don\u0027t have matplotlib installed don\u0027t bother continuing\n    try:\n      import matplotlib\n    except ImportError:\n      return\n    \n    # Make sure custom backends are available in the PYTHONPATH\n    rootdir \u003d os.environ.get(\u0027ZEPPELIN_HOME\u0027, os.getcwd())\n    mpl_path \u003d os.path.join(rootdir, \u0027interpreter\u0027, \u0027lib\u0027, \u0027python\u0027)\n    if mpl_path not in sys.path:\n      sys.path.append(mpl_path)\n    \n    # Finally check if backend exists, and if so configure as appropriate\n    try:\n      matplotlib.use(\u0027module://backend_zinline\u0027)\n      import backend_zinline\n      \n      # Everything looks good so make config assuming that we are using\n      # an inline backend\n      self._displayhook \u003d backend_zinline.displayhook\n      self.configure_mpl(width\u003d600, height\u003d400, dpi\u003d72, fontsize\u003d10,\n                         interactive\u003dTrue, format\u003d\u0027png\u0027, context\u003dself.z)\n    except ImportError:\n      # Fall back to Agg if no custom backend installed\n      matplotlib.use(\u0027Agg\u0027)\n      warnings.warn(\"Unable to load inline matplotlib backend, \"\n                    \"falling back to Agg\")\n\n  def configure_mpl(self, **kwargs):\n    import mpl_config\n    mpl_config.configure(**kwargs)\n\n  def __tupleToScalaTuple2(self, tuple):\n    if (len(tuple) \u003d\u003d 2):\n      return gateway.jvm.scala.Tuple2(tuple[0], tuple[1])\n    else:\n      raise IndexError(\"options must be a list of tuple of 2\")\n\n\nclass SparkVersion(object):\n  SPARK_1_4_0 \u003d 10400\n  SPARK_1_3_0 \u003d 10300\n  SPARK_2_0_0 \u003d 20000\n  SPARK_2_3_1 \u003d 20301\n\n  def __init__(self, versionNumber):\n    self.version \u003d versionNumber\n\n  def isAutoConvertEnabled(self):\n    return self.version \u003e\u003d self.SPARK_1_4_0\n\n  def isImportAllPackageUnderSparkSql(self):\n    return self.version \u003e\u003d self.SPARK_1_3_0\n\n  def isSpark2(self):\n    return self.version \u003e\u003d self.SPARK_2_0_0\n\n  def isArrowOptimizationEnabled(self):\n    return self.version \u003e\u003d self.SPARK_2_3_1\n\nclass PySparkCompletion:\n  def __init__(self, interpreterObject):\n    self.interpreterObject \u003d interpreterObject\n\n  def getGlobalCompletion(self):\n    objectDefList \u003d []\n    try:\n      for completionItem in list(globals().keys()):\n        objectDefList.append(completionItem)\n    except:\n      return None\n    else:\n      return objectDefList\n\n  def getMethodCompletion(self, text_value):\n    objectDefList \u003d []\n    execResult \u003d locals()\n    if text_value \u003d\u003d None:\n      return None\n    completion_target \u003d \"\"\n    try:\n      if \".\" in text_value:\n        completion_target \u003d text_value[0:text_value.rfind(\".\")]\n      if completion_target \u003d\u003d \"\" :\n        objectDefList \u003d list(globals().keys())\n      else:\n        objectDefList \u003d dir(eval(completion_target))\n    except:\n      return None\n    else:\n      if \".\" not in text_value:\n        # When no dot is present in autocomplete target we need to lookup in globals. E.g \"sqlCon\"\n        pattern \u003d re.compile(text_value, re.I)\n        return list(filter(lambda x : bool(pattern.match(x)), list(objectDefList)))\n      elif text_value[-1] \u003d\u003d \".\":\n        # When suggestions are requested just after dot. E.g. \"spark.\"\n        return list(objectDefList)\n      else:\n        # When suggested are requested after some text after dot. E.g. \"sc.getCon\"\n        last_part \u003d text_value[(text_value.rfind(\".\") + 1):len(text_value)]\n        pattern \u003d re.compile(last_part, re.I)\n        return list(filter(lambda x : bool(pattern.match(x)), list(objectDefList)))\n\n\n  def getCompletion(self, text_value):\n    completionList \u003d set()\n    if text_value !\u003d None:\n      objectCompletionList \u003d self.getMethodCompletion(text_value)\n      if objectCompletionList !\u003d None:\n        for completionItem in list(objectCompletionList):\n          completionList.add(completionItem)\n    if len(completionList) \u003c\u003d 0:\n      self.interpreterObject.setStatementsFinished(\"\", False)\n    else:\n      result \u003d json.dumps(list(filter(lambda x : not re.match(\"^__.*\", x), list(completionList))))\n      self.interpreterObject.setStatementsFinished(result, False)\n\nport\u003dint(sys.argv[1])\nsparkVersion \u003d SparkVersion(int(sys.argv[2]))\nsecret \u003d None\nif len(sys.argv) \u003d\u003d 4:\n  secret \u003d sys.argv[3]\n\nif sparkVersion.isSpark2():\n  from pyspark.sql import SparkSession\nelse:\n  from pyspark.sql import SchemaRDD\n\nauto_convert \u003d sparkVersion.isAutoConvertEnabled()\nif secret:\n  from py4j.java_gateway import GatewayParameters\n  gateway \u003d JavaGateway(gateway_parameters\u003dGatewayParameters(\n    port\u003dport, auth_token\u003dsecret, auto_convert\u003dauto_convert))\nelse:\n  gateway \u003d JavaGateway(GatewayClient(port\u003dport), auto_convert\u003dauto_convert)\n\njava_import(gateway.jvm, \"org.apache.spark.SparkEnv\")\njava_import(gateway.jvm, \"org.apache.spark.SparkConf\")\njava_import(gateway.jvm, \"org.apache.spark.api.java.*\")\njava_import(gateway.jvm, \"org.apache.spark.api.python.*\")\njava_import(gateway.jvm, \"org.apache.spark.mllib.api.python.*\")\n\nintp \u003d gateway.entry_point\n_zeppelin_output_internal \u003d Logger()\nsys.stdout \u003d _zeppelin_output_internal\nsys.stderr \u003d _zeppelin_output_internal\nintp.onPythonScriptInitialized(os.getpid())\n\njsc \u003d intp.getJavaSparkContext()\n\nif sparkVersion.isImportAllPackageUnderSparkSql():\n  java_import(gateway.jvm, \"org.apache.spark.sql.*\")\n  java_import(gateway.jvm, \"org.apache.spark.sql.hive.*\")\n  if sparkVersion.isArrowOptimizationEnabled():\n    java_import(gateway.jvm, \"org.apache.spark.sql.api.python.PythonSQLUtils\")\nelse:\n  java_import(gateway.jvm, \"org.apache.spark.sql.SQLContext\")\n  java_import(gateway.jvm, \"org.apache.spark.sql.hive.HiveContext\")\n  java_import(gateway.jvm, \"org.apache.spark.sql.hive.LocalHiveContext\")\n  java_import(gateway.jvm, \"org.apache.spark.sql.hive.TestHiveContext\")\n\n\njava_import(gateway.jvm, \"scala.Tuple2\")\n\n_zcUserQueryNameSpace \u003d {}\n\njconf \u003d intp.getSparkConf()\nconf \u003d SparkConf(_jvm \u003d gateway.jvm, _jconf \u003d jconf)\nsc \u003d _zsc_ \u003d SparkContext(jsc\u003djsc, gateway\u003dgateway, conf\u003dconf)\n_zcUserQueryNameSpace[\"_zsc_\"] \u003d _zsc_\n_zcUserQueryNameSpace[\"sc\"] \u003d sc\n\nif sparkVersion.isSpark2():\n  spark \u003d __zSpark__ \u003d SparkSession(sc, intp.getSparkSession())\n  sqlc \u003d __zSqlc__ \u003d __zSpark__._wrapped\n  _zcUserQueryNameSpace[\"sqlc\"] \u003d sqlc\n  _zcUserQueryNameSpace[\"__zSqlc__\"] \u003d __zSqlc__\n  _zcUserQueryNameSpace[\"spark\"] \u003d spark\n  _zcUserQueryNameSpace[\"__zSpark__\"] \u003d __zSpark__\nelse:\n  sqlc \u003d __zSqlc__ \u003d SQLContext(sparkContext\u003dsc, sqlContext\u003dintp.getSQLContext())\n  _zcUserQueryNameSpace[\"sqlc\"] \u003d sqlc\n  _zcUserQueryNameSpace[\"__zSqlc__\"] \u003d sqlc\n\nsqlContext \u003d __zSqlc__\n_zcUserQueryNameSpace[\"sqlContext\"] \u003d sqlContext\n\ncompletion \u003d __zeppelin_completion__ \u003d PySparkCompletion(intp)\n_zcUserQueryNameSpace[\"completion\"] \u003d completion\n_zcUserQueryNameSpace[\"__zeppelin_completion__\"] \u003d __zeppelin_completion__\n\nz \u003d __zeppelin__ \u003d PyZeppelinContext(intp.getZeppelinContext())\n__zeppelin__._setup_matplotlib()\n_zcUserQueryNameSpace[\"z\"] \u003d z\n_zcUserQueryNameSpace[\"__zeppelin__\"] \u003d __zeppelin__\n\nclass ParagraphCancelException(Exception):\n  pass\n\ndef signal_handler(signal, frame):\n  raise ParagraphCancelException\n\nsignal.signal(signal.SIGUSR1, signal_handler)\n\nwhile True :\n  try:\n    req \u003d intp.getStatements()\n    intp.setLoopStarted()\n    try:\n      stmts \u003d req.statements().split(\"\\n\")\n      jobGroup \u003d req.jobGroup()\n      jobDesc \u003d req.jobDescription()\n      \n      # Get post-execute hooks\n      try:\n        global_hook \u003d intp.getHook(\u0027post_exec_dev\u0027)\n      except:\n        global_hook \u003d None\n        \n      try:\n        user_hook \u003d __zeppelin__.getHook(\u0027post_exec\u0027)\n      except:\n        user_hook \u003d None\n        \n      nhooks \u003d 0\n      for hook in (global_hook, user_hook):\n        if hook:\n          nhooks +\u003d 1\n\n      if stmts:\n        # use exec mode to compile the statements except the last statement,\n        # so that the last statement\u0027s evaluation will be printed to stdout\n        sc.setJobGroup(jobGroup, jobDesc)\n        code \u003d compile(\u0027\\n\u0027.join(stmts), \u0027\u003cstdin\u003e\u0027, \u0027exec\u0027, ast.PyCF_ONLY_AST, 1)\n        to_run_hooks \u003d []\n        if (nhooks \u003e 0):\n          to_run_hooks \u003d code.body[-nhooks:]\n        to_run_exec, to_run_single \u003d (code.body[:-(nhooks + 1)],\n                                      [code.body[-(nhooks + 1)]])\n\n        try:\n          for node in to_run_exec:\n            mod \u003d ast.Module([node])\n            code \u003d compile(mod, \u0027\u003cstdin\u003e\u0027, \u0027exec\u0027)\n            exec(code, _zcUserQueryNameSpace)\n\n          for node in to_run_single:\n            mod \u003d ast.Interactive([node])\n            code \u003d compile(mod, \u0027\u003cstdin\u003e\u0027, \u0027single\u0027)\n            exec(code, _zcUserQueryNameSpace)\n            \n          for node in to_run_hooks:\n            mod \u003d ast.Module([node])\n            code \u003d compile(mod, \u0027\u003cstdin\u003e\u0027, \u0027exec\u0027)\n            exec(code, _zcUserQueryNameSpace)\n\n          intp.setStatementsFinished(\"\", False)\n        except Py4JJavaError:\n          # raise it to outside try except\n          raise\n        except:\n          exception \u003d traceback.format_exc()\n          m \u003d re.search(\"File \\\"\u003cstdin\u003e\\\", line (\\d+).*\", exception)\n          if m:\n            line_no \u003d int(m.group(1))\n            intp.setStatementsFinished(\n              \"Fail to execute line {}: {}\\n\".format(line_no, stmts[line_no - 1]) + exception, True)\n          else:\n            intp.setStatementsFinished(exception, True)\n      else:\n        intp.setStatementsFinished(\"\", False)\n\n    except Py4JJavaError:\n      excInnerError \u003d traceback.format_exc() # format_tb() does not return the inner exception\n      innerErrorStart \u003d excInnerError.find(\"Py4JJavaError:\")\n      if innerErrorStart \u003e -1:\n         excInnerError \u003d excInnerError[innerErrorStart:]\n      intp.setStatementsFinished(excInnerError + str(sys.exc_info()), True)\n    except:\n      intp.setStatementsFinished(traceback.format_exc(), True)\n\n    _zeppelin_output_internal.reset()\n\n  except ParagraphCancelException:\n    continue\n"
+          }
+        ]
+      },
+      "apps": [],
+      "version": "v1",
+      "jobName": "paragraph_1566216874154_-151353639",
+      "id": "20190819-121434_1644201526_q_3UG134WPG61566216229",
+      "dateCreated": "Aug 19, 2019 12:14:34 PM",
+      "dateSubmitted": "Aug 19, 2019 12:22:10 PM",
+      "dateStarted": "Aug 19, 2019 12:22:11 PM",
+      "dateFinished": "Aug 19, 2019 12:22:11 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 1000
+    },
+    {
+      "text": "%pyspark sys",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:21:33 PM",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "tableName",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "isTemporary",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "tableName",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "isTemporary",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fail to execute line 1: sys\nTraceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-7049596984053587979.py\", line 443, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nNameError: name \u0027sys\u0027 is not defined\n"
+          }
+        ]
+      },
+      "paragraphProgress": {
+        "jobs": [],
+        "numCompletedTasks": 0,
+        "numTasks": 0,
+        "truncated": false
+      },
+      "apps": [],
+      "version": "v1",
+      "jobName": "paragraph_1419942152596_-2073911473",
+      "id": "20141230-122232_1995768959_q_3UG134WPG61566216229",
+      "dateCreated": "Dec 30, 2014 12:22:32 PM",
+      "dateSubmitted": "Aug 19, 2019 12:21:33 PM",
+      "dateStarted": "Aug 19, 2019 12:22:02 PM",
+      "dateFinished": "Aug 19, 2019 12:22:02 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:14:06 PM",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "version": "v0",
+      "jobName": "paragraph_1566216314145_-1355443305",
+      "id": "20190819-120514_2113634926_q_3UG134WPG61566216229",
+      "dateCreated": "Aug 19, 2019 12:05:14 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 1000
+    },
+    {
+      "text": "//Alternate way to use spark hive sql\nsqlContext.sql(\"show tables\").collect",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1423129030160_-1845715745",
+      "id": "20150205-093710_1593646765_q_3UG134WPG61566216229",
+      "dateCreated": "Feb 5, 2015 9:37:10 AM",
+      "dateStarted": "Apr 8, 2015 6:34:37 PM",
+      "dateFinished": "Apr 8, 2015 6:34:42 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Visualizations on airline data for four quarters",
+      "text": "%sql select origin, quarter, count(*)/1000000 count from default_qubole_airline_origin_destination where quarter is not NULL group by origin, quarter order by count desc limit 100",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:04:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "tableHide": false,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": true,
+              "keys": [
+                {
+                  "name": "origin",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "count",
+                  "index": 2.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [
+                {
+                  "name": "quarter",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "scatter": {},
+              "setting": {
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "origin\tquarter\tcount\n\"ATL\"\t4\t0.585943\n\"ATL\"\t2\t0.572598\n\"ATL\"\t3\t0.572256\n\"ATL\"\t1\t0.500581\n\"ORD\"\t2\t0.491543\n\"ORD\"\t3\t0.466277\n\"ORD\"\t4\t0.447966\n\"ORD\"\t1\t0.414078\n\"DFW\"\t4\t0.395589\n\"DFW\"\t2\t0.394314\n\"DFW\"\t3\t0.385744\n\"DEN\"\t3\t0.352433\n\"DEN\"\t2\t0.350541\n\"DEN\"\t4\t0.338047\n\"DFW\"\t1\t0.334973\n\"CLT\"\t4\t0.32012\n\"CLT\"\t2\t0.309697\n\"CLT\"\t3\t0.308442\n\"DEN\"\t1\t0.304126\n\"CLT\"\t1\t0.278568\n\"PHX\"\t4\t0.267915\n\"PHX\"\t3\t0.26791\n\"LAX\"\t2\t0.257623\n\"PHX\"\t1\t0.254131\n\"PHX\"\t2\t0.251099\n\"LAX\"\t3\t0.245908\n\"LAX\"\t4\t0.242943\n\"MSP\"\t2\t0.242774\n\"MSP\"\t4\t0.240772\n\"MSP\"\t3\t0.238894\n\"IAH\"\t4\t0.230179\n\"IAH\"\t1\t0.226183\n\"IAH\"\t2\t0.224701\n\"DTW\"\t2\t0.224464\n\"DTW\"\t4\t0.218456\n\"LAX\"\t1\t0.216789\n\"IAH\"\t3\t0.215317\n\"LAS\"\t3\t0.2128\n\"DTW\"\t3\t0.211875\n\"MSP\"\t1\t0.210818\n\"LAS\"\t4\t0.208455\n\"PHL\"\t2\t0.20522\n\"PHL\"\t4\t0.205053\n\"LAS\"\t2\t0.203396\n\"PHL\"\t3\t0.203169\n\"LAS\"\t1\t0.198329\n\"DTW\"\t1\t0.196459\n\"SEA\"\t3\t0.196199\n\"SEA\"\t2\t0.182331\n\"PHL\"\t1\t0.177207\n\"SLC\"\t3\t0.174109\n\"SEA\"\t4\t0.172549\n\"SFO\"\t3\t0.168273\n\"SFO\"\t2\t0.166709\n\"SLC\"\t2\t0.163611\n\"SFO\"\t4\t0.162051\n\"SLC\"\t4\t0.155542\n\"MCO\"\t2\t0.152253\n\"CVG\"\t2\t0.149251\n\"MCO\"\t1\t0.147277\n\"CVG\"\t3\t0.146615\n\"SLC\"\t1\t0.144876\n\"MCO\"\t4\t0.144103\n\"CVG\"\t4\t0.141082\n\"SEA\"\t1\t0.136729\n\"SFO\"\t1\t0.134752\n\"CVG\"\t1\t0.130466\n\"BOS\"\t2\t0.12743\n\"LGA\"\t2\t0.12742\n\"DCA\"\t2\t0.125981\n\"IAD\"\t2\t0.125825\n\"MCO\"\t3\t0.125714\n\"BOS\"\t3\t0.123382\n\"LGA\"\t3\t0.122713\n\"DCA\"\t3\t0.121217\n\"LGA\"\t4\t0.118307\n\"DCA\"\t4\t0.117944\n\"BOS\"\t4\t0.11726\n\"IAD\"\t1\t0.115924\n\"IAD\"\t4\t0.114798\n\"IAD\"\t3\t0.113989\n\"EWR\"\t2\t0.110173\n\"BWI\"\t3\t0.107754\n\"BWI\"\t2\t0.105037\n\"BWI\"\t4\t0.104957\n\"EWR\"\t4\t0.104524\n\"EWR\"\t3\t0.104487\n\"DCA\"\t1\t0.10411\n\"EWR\"\t1\t0.102976\n\"PDX\"\t3\t0.101936\n\"LGA\"\t1\t0.099723\n\"JFK\"\t2\t0.099313\n\"JFK\"\t3\t0.097973\n\"FLL\"\t1\t0.097782\n\"SAN\"\t3\t0.097503\n\"BOS\"\t1\t0.09622\n\"MEM\"\t4\t0.096146\n\"JFK\"\t4\t0.096138\n\"MEM\"\t2\t0.09607\n\"SAN\"\t2\t0.095953\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1425891002968_1409669910",
+      "id": "20150309-085002_761768331_q_3UG134WPG61566216229",
+      "dateCreated": "Mar 9, 2015 8:50:02 AM",
+      "dateStarted": "Apr 8, 2015 6:34:49 PM",
+      "dateFinished": "Apr 8, 2015 6:37:13 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql select * from default_qubole_memetracker limit 10",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:04:07 PM",
+      "config": {
+        "colWidth": 12.0,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": true,
+              "keys": [
+                {
+                  "name": "site",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "ts",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "scatter": {
+                "xAxis": {
+                  "name": "site",
+                  "index": 0.0,
+                  "aggr": "sum"
+                },
+                "yAxis": {
+                  "name": "ts",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              },
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "site": "string",
+                      "ts": "string",
+                      "phr": "string",
+                      "lnks": "string",
+                      "month": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "site\tts\tphr\tlnks\tmonth\nhttp://eighteezbaby.com/2008/12/30/you-know-you-are-new-money-whenwill-post-funny-pics-later\t2009-01-01 00:00:50\t[]\t[]\t2009-01\nhttp://thelondonreviewer.com/2008/12/31/uk-sunday-times-round-up-28-dec-08\t2009-01-01 00:01:10\t[\"not only do they patients get to lose their love handles or chubby belly but they get to take part in saving the earth\"]\t[\"http://entertainment.timesonline.co.uk/tol/arts_and_entertainment/music/article5399342.ece\"]\t2009-01\nhttp://thelondonreviewer.com/2008/12/28/film-review-twilight\t2009-01-01 00:01:10\t[]\t[\"http://imdb.com/title/tt1099212\",\"http://imdb.com/title/tt0120611\",\"http://imdb.com/title/tt0097493\"]\t2009-01\nhttp://thelondonreviewer.com/2008/12/28/hair-salon-review-jigami-london-w1\t2009-01-01 00:01:10\t[\"plus patiently answering all my questions about the products before booking the appointment they intrigued me enough to trust them do my hair\"]\t[\"http://thelondonreviewer.com/2008/05/25/hair-salon-review-rush-camden-london-nw1\"]\t2009-01\nhttp://blog.myspace.com/index.cfm?fuseaction\u003dblog.view\u0026friendid\u003d66879642\u0026blogid\u003d460233878\t2009-01-01 00:01:34\t[\"you are alone when you wake up in the morning-you are alone when you are sick when you solve a difficult problem and are proud of yourself you are alone when you are celebrating and when it is cold outside when you are angry because something has happened which you have no control over or when you are happy overwhelmingly happy when you laugh you are alone\"]\t[]\t2009-01\nhttp://64.90.166.18/news/american-idols-gina-glocksen-weds\t2009-01-01 00:02:31\t[\"it looked like they were all very happy and having a great time\",\"was actually more low key than you would have expected\",\"they all seemed to be having a good time with smiles on their faces\",\"it seemed to go incredibly smoothly the weather cooperated and it was wonderful for them\",\"beautiful full-length white dress sleeveless with beading along the front\",\"a delight to work with she was very down to earth and a very excited bride\"]\t[]\t2009-01\nhttp://2be.be/vips/news.php?itemid\u003d19652\t2009-01-01 00:02:31\t[]\t[\"http://kanaaltwee.be/bio.php?itemid\u003d145\"]\t2009-01\nhttp://bizjournals.com/ct/rc/30414/www.bizjournals.com/jacksonville/stories/2008/12/29/daily23.html?ana\u003dfrom_rss\t2009-01-01 00:02:32\t[\"i think the bigger rounds of layoffs are going to come in the next few months\",\"people have the same number of heart attacks in recessions\"]\t[\"http://jacksonville.bizjournals.com/sanfrancisco/stories/2008/12/15/newscolumn3.html\",\"http://jacksonville.bizjournals.com/jacksonville/related_content.html?topic\u003dshands%20healthcare\",\"http://jacksonville.bizjournals.com/jacksonville/related_content.html?topic\u003dmedicare\",\"http://jacksonville.bizjournals.com/jacksonville/related_content.html?topic\u003dflorida%20college\"]\t2009-01\nhttp://shopping.hm/rss/1893.xml\t2009-01-01 00:02:32\t[]\t[]\t2009-01\nhttp://volokh.com/posts/1230767684.shtml\t2009-01-01 00:02:33\t[]\t[\"http://volokh.com/#contact\"]\t2009-01\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1425891020288_-971525709",
+      "id": "20150309-085020_795327291_q_3UG134WPG61566216229",
+      "dateCreated": "Mar 9, 2015 8:50:20 AM",
+      "dateStarted": "Apr 8, 2015 6:37:35 PM",
+      "dateFinished": "Apr 8, 2015 6:37:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "pyspark Pi Calculation example",
+      "text": "%pyspark\nfrom random import random\nfrom operator import add\nsc.version\nsys.version\npartitions \u003d 10\nn \u003d 100000 * partitions\n\ndef f(_):\n    x \u003d random() * 2 - 1\n    y \u003d random() * 2 - 1\n    return 1 if x ** 2 + y ** 2 \u003c 1 else 0\n\ncount \u003d sc.parallelize(xrange(1, n + 1), partitions).map(f).reduce(add)\nprint \"Pi is roughly %f\" % (4.0 * count / n)\n\nasdf",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:08:21 PM",
+      "config": {
+        "colWidth": 12.0,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "u\u00271.3.0\u0027\n\u00272.6.9 (unknown, Sep 13 2014, 00:25:11) \\n[GCC 4.8.2 20140120 (Red Hat 4.8.2-16)]\u0027\nPi is roughly 3.143740\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1427793666627_1476918807",
+      "id": "20150331-092106_1306548694_q_3UG134WPG61566216229",
+      "dateCreated": "Mar 31, 2015 9:21:06 AM",
+      "dateStarted": "Apr 8, 2015 6:37:54 PM",
+      "dateFinished": "Apr 8, 2015 6:38:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Temp table Example: Prepare Data",
+      "text": "%sh\nwget http://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank.zip -o /tmp/bank.zip\nrm -rf /tmp/data\nmkdir /tmp/data\nunzip bank.zip -d /tmp/data\nrm /tmp/bank.zip\nls /tmp/data\nhadoop dfs -put -f /tmp/data/bank-full.csv /tmp\n",
+      "config": {
+        "colWidth": 12.0,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ]
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Archive:  bank.zip\n  inflating: /tmp/data/bank-full.csv  \n  inflating: /tmp/data/bank-names.txt  \n  inflating: /tmp/data/bank.csv      \nbank.csv\nbank-full.csv\nbank-names.txt\nDEPRECATED: Use of this script to execute hdfs command is deprecated.\nInstead use the hdfs command for it.\n\n15/04/08 18:38:07 INFO Configuration.deprecation: fs.default.name is deprecated. Instead, use fs.defaultFS\n15/04/08 18:38:09 INFO Configuration.deprecation: fs.default.name is deprecated. Instead, use fs.defaultFS\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1428488793734_1582303413",
+      "id": "20150408-102633_292511083_q_3UG134WPG61566216229",
+      "dateCreated": "Apr 8, 2015 10:26:33 AM",
+      "dateStarted": "Apr 8, 2015 6:38:04 PM",
+      "dateFinished": "Apr 8, 2015 6:38:10 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Temp table Example: Load Data in Table",
+      "text": "val bankText \u003d sc.textFile(\"/tmp/bank-full.csv\")\n\ncase class Bank(age: Integer, job: String, marital: String, education: String, balance: Integer)\n\nval bank \u003d bankText.map(s \u003d\u003e s.split(\";\")).filter(s \u003d\u003e s(0) !\u003d \"\\\"age\\\"\").map(\n    s \u003d\u003e Bank(s(0).toInt, \n            s(1).replaceAll(\"\\\"\", \"\"),\n            s(2).replaceAll(\"\\\"\", \"\"),\n            s(3).replaceAll(\"\\\"\", \"\"),\n            s(5).replaceAll(\"\\\"\", \"\").toInt\n        )\n).toDF()\nbank.registerTempTable(\"bank\")",
+      "config": {
+        "colWidth": 12.0,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ]
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "bankText: org.apache.spark.rdd.RDD[String] \u003d /tmp/bank-full.csv MapPartitionsRDD[49] at textFile at \u003cconsole\u003e:27\ndefined class Bank\nbank: org.apache.spark.sql.DataFrame \u003d [age: int, job: string, marital: string, education: string, balance: int]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1428493558892_468073290",
+      "id": "20150408-114558_168024862_q_3UG134WPG61566216229",
+      "dateCreated": "Apr 8, 2015 11:45:58 AM",
+      "dateStarted": "Apr 8, 2015 6:38:47 PM",
+      "dateFinished": "Apr 8, 2015 6:38:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql \nselect age, count(1) value \nfrom bank \nwhere age \u003c ${maxAge\u003d30} \ngroup by age \norder by age",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:04:05 PM",
+      "config": {
+        "colWidth": 4.0,
+        "results": [
+          {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [
+                {
+                  "name": "age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "value",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "scatter": {
+                "xAxis": {
+                  "name": "age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                },
+                "yAxis": {
+                  "name": "value",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              },
+              "setting": {
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {
+          "maxAge": "30"
+        },
+        "forms": {
+          "maxAge": {
+            "name": "maxAge",
+            "defaultValue": "30",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tvalue\n18\t12\n19\t35\n20\t50\n21\t79\n22\t129\n23\t202\n24\t302\n25\t527\n26\t805\n27\t909\n28\t1038\n29\t1185\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1428493866913_258999751",
+      "id": "20150408-115106_1969812973_q_3UG134WPG61566216229",
+      "dateCreated": "Apr 8, 2015 11:51:06 AM",
+      "dateStarted": "Apr 8, 2015 6:38:55 PM",
+      "dateFinished": "Apr 8, 2015 6:38:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql \nselect age, count(1) value\nfrom bank \nwhere age \u003c 30 \ngroup by age \norder by age",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:04:07 PM",
+      "config": {
+        "colWidth": 4.0,
+        "results": [
+          {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [
+                {
+                  "name": "age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "value",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "scatter": {
+                "xAxis": {
+                  "name": "age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                },
+                "yAxis": {
+                  "name": "value",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              },
+              "setting": {
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tvalue\n18\t12\n19\t35\n20\t50\n21\t79\n22\t129\n23\t202\n24\t302\n25\t527\n26\t805\n27\t909\n28\t1038\n29\t1185\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1428493909492_1535089259",
+      "id": "20150408-115149_1878550129_q_3UG134WPG61566216229",
+      "dateCreated": "Apr 8, 2015 11:51:49 AM",
+      "dateStarted": "Apr 8, 2015 6:38:58 PM",
+      "dateFinished": "Apr 8, 2015 6:39:01 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql \nselect age, count(1) value \nfrom bank \nwhere marital\u003d\"${marital\u003dsingle,single|divorced|married}\" \ngroup by age \norder by age",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:04:07 PM",
+      "config": {
+        "colWidth": 4.0,
+        "results": [
+          {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [
+                {
+                  "name": "age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "value",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "scatter": {
+                "xAxis": {
+                  "name": "age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                },
+                "yAxis": {
+                  "name": "value",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              },
+              "setting": {
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "runOnSelectionChange": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {
+          "marital": "single"
+        },
+        "forms": {
+          "marital": {
+            "options": [
+              {
+                "value": "single"
+              },
+              {
+                "value": "divorced"
+              },
+              {
+                "value": "married"
+              }
+            ],
+            "name": "marital",
+            "defaultValue": "single",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tvalue\n18\t12\n19\t35\n20\t47\n21\t74\n22\t120\n23\t175\n24\t248\n25\t423\n26\t615\n27\t658\n28\t697\n29\t683\n30\t1012\n31\t1017\n32\t941\n33\t746\n34\t650\n35\t631\n36\t538\n37\t453\n38\t394\n39\t346\n40\t257\n41\t241\n42\t218\n43\t183\n44\t170\n45\t146\n46\t130\n47\t100\n48\t124\n49\t101\n50\t76\n51\t72\n52\t62\n53\t71\n54\t55\n55\t54\n56\t45\n57\t38\n58\t35\n59\t36\n60\t27\n61\t5\n63\t2\n66\t5\n67\t3\n68\t4\n69\t2\n70\t1\n71\t1\n72\t5\n73\t2\n77\t1\n83\t2\n86\t1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1428493935542_-328973189",
+      "id": "20150408-115215_524941105_q_3UG134WPG61566216229",
+      "dateCreated": "Apr 8, 2015 11:52:15 AM",
+      "dateStarted": "Apr 8, 2015 6:39:00 PM",
+      "dateFinished": "Apr 8, 2015 6:39:03 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Other features",
+      "text": "%md\n### simple printing data\n- println can be used\n- data can be printed in tabular form using %table\n- input forms are also supported",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ]
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003esimple printing data\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eprintln can be used\u003c/li\u003e\n\u003cli\u003edata can be printed in tabular form using %table\u003c/li\u003e\n\u003cli\u003einput forms are also supported\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1419938866192_-86063033",
+      "id": "20141230-112746_892660332_q_3UG134WPG61566216229",
+      "dateCreated": "Dec 30, 2014 11:27:46 AM",
+      "dateStarted": "Apr 8, 2015 11:59:20 AM",
+      "dateFinished": "Apr 8, 2015 11:59:20 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "println(\"age\\tnumbers\\n2\\t10\\n3\\t20\\n8\\t70\\n12\\t50\\n20\\t10\")",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ]
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "age\tnumbers\n2\t10\n3\t20\n8\t70\n12\t50\n20\t10\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1419939268517_-2053534279",
+      "id": "20141230-113428_1013521600_q_3UG134WPG61566216229",
+      "dateCreated": "Dec 30, 2014 11:34:28 AM",
+      "dateStarted": "Apr 8, 2015 11:59:28 AM",
+      "dateFinished": "Apr 8, 2015 11:59:29 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "println(\"%table age\\tnumbers\\n2\\t10\\n3\\t20\\n8\\t70\\n12\\t50\\n20\\t10\")",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:04:07 PM",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {},
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "age": "string",
+                      "numbers": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tnumbers\n2\t10\n3\t20\n8\t70\n12\t50\n20\t10\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1419939353013_741036544",
+      "id": "20141230-113553_25914798_q_3UG134WPG61566216229",
+      "dateCreated": "Dec 30, 2014 11:35:53 AM",
+      "dateStarted": "Apr 8, 2015 10:22:14 AM",
+      "dateFinished": "Apr 8, 2015 10:22:15 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "println(\"%table age\\tnumbers\\n2\\t10\\n3\\t20\\n\" + z.input(\"maxAge\",11)+ \"\\t70\\n12\\t50\\n20\\t10\")",
+      "user": "santoshk@qubole.com",
+      "dateUpdated": "Aug 19, 2019 12:04:08 PM",
+      "config": {
+        "looknfeel": "default",
+        "colWidth": 12.0,
+        "tableHide": false,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [
+                {
+                  "name": "age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "numbers",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "scatter": {
+                "xAxis": {
+                  "name": "age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                },
+                "yAxis": {
+                  "name": "numbers",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              },
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "age": "string",
+                      "numbers": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        ],
+        "fontSize": 9.0,
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {
+          "Age": "19",
+          "maxAge": "12"
+        },
+        "forms": {
+          "maxAge": {
+            "name": "maxAge",
+            "displayName": "maxAge",
+            "defaultValue": "11.0",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tnumbers\n2\t10\n3\t20\n12\t70\n12\t50\n20\t10\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1419939436263_1897096431",
+      "id": "20141230-113716_1567440714_q_3UG134WPG61566216229",
+      "dateCreated": "Dec 30, 2014 11:37:16 AM",
+      "dateStarted": "Apr 8, 2015 10:22:17 AM",
+      "dateFinished": "Apr 8, 2015 10:22:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1428493946002_1320460670",
+      "id": "20150408-115226_1547163742_q_3UG134WPG61566216229",
+      "dateCreated": "Apr 8, 2015 11:52:26 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Getting Started",
+  "id": "3UG134WPG61566216229",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "isDashboard": false,
+    "defaultLang": "spark"
+  },
+  "info": {
+    "runAllInProgress": false
+  },
+  "source": "FCN"
+}
